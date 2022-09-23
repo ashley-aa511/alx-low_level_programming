@@ -1,30 +1,20 @@
 #include "main.h"
 /**
- * rot13 - Entry point
- * ONE if, TWO loops only...
- * @n: input
- * Return: decrypted string
+ * rot13 - encode a string using rot13 encryption
+ * @targ: the target string to encrypt
+ * Return: the encrypted string
  */
-char *rot13(char *n)
+char *rot13(char *targ)
 {
-int x, rot_c = 13, i = 0;
-char toswap[] = {'A', 'N', 'a', 'n', 'B', 'O', 'b', 'o', 'C', 'P',
-'c', 'p', 'D', 'Q', 'd', 'q', 'E', 'R', 'e', 'r', 'F', 'S', 'f',
-'s', 'G', 'T', 'g', 't', 'H', 'U', 'h', 'u', 'I', 'V', 'i', 'v',
-'J', 'W', 'j', 'w', 'K', 'X', 'k', 'x', 'L', 'Y', 'l', 'y', 'M',
-'Z', 'm', 'z'};
-while (n[i] != '\0')
+int x = 0, y = 0, neg = -1;
+char alpha[] = "ANBOCPDQERFSGTHUIVJWKXLYMZanbocpdqerfsgthuivjwkxlymz";
+for (x = 0; targ[x]; x++)
 {
-for (x = 0; x <= 51; x++)
-{
-if (n[i] == toswap[x])
-{
-n[i] = n[i] + rot_c;
-x = 51;
+neg = 1;
+for (y = 0; targ[x] != alpha[y] && y < 52; y++)
+neg = (neg * -1);
+if (targ[x] == alpha[y])
+targ[x] = (targ[x] + (13 * neg));
 }
-rot_c = rot_c * -1;
-}
-i++;
-}
-return (n);
+return (targ);
 }
