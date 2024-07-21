@@ -18,5 +18,5 @@ for (l = 'A'; l <= 'Z'; l++)
 putchar(l);
 }
 putchar('\n');
-return 0;
+return (0);
 }
